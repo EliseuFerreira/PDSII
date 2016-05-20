@@ -15,46 +15,70 @@ import javax.ws.rs.core.MediaType;
 
 import model.dao.TecnicoDao;
 import model.domain.Tecnico;
+import model.facade.ws.TecnicoFacade;
 
-@Path("/Tecnico")
-@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Path("/tecnico")
+@Consumes({MediaType.APPLICATION_JSON,
+		   MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON,
+	   MediaType.APPLICATION_XML})
 public class TecnicoFacadeImpl implements TecnicoFacade {
-
-	@Inject
-	private TecnicoDao TecnicoDao;
 	
-	@GET
-	public List<Tecnico> getTecnicos() {
-		return TecnicoDao.getTecnicos(new Tecnico());
-	}
+	//@Inject
+		//private CategoriaService tecnicoService;
+		
+		@Inject
+		private TecnicoDao tecnicoDao;
 
-	@GET
-	@Path("/{codigo}")
-	public List<Tecnico> getTecnicos(@PathParam("codigo") Integer codigo) {
-		Tecnico Tecnico = new Tecnico();
-		Tecnico.setCodTecnico(codigo);
-		return TecnicoDao.getTecnicos(Tecnico);
-	}
-	
+		
+		@Override
+		@POST
+		public Tecnico salvar(Tecnico tecnico) {
+		//	return tecnicoService.salvar(tecnico);
+			return tecnicoDao.salvar(tecnico);
+		}
+		
+		
+		@Override
+		@GET
+		public List<Tecnico> getTecnicos() {
+			//return tecnicoService.getCategorias();
+			return tecnicoDao.getTecnicos(new Tecnico());
+		}
+		
+		
+		@Override
+		@GET
+		@Path("/{codigo}")
+		public List<Tecnico> getTecnicos(@PathParam("codigo") Integer codigo) {
+			Tecnico tecnico = new Tecnico();
+			tecnico.setCodTecnico(codigo);
+			return tecnicoDao.getTecnicos(tecnico);	
+		}
+		
+		
+		
+		@Override
+		@DELETE
+		@Path("/{codigo}")
+		public void deletarTecnico(@PathParam("codigo") Integer codigo) {
+			
+				Tecnico tecnico = new Tecnico();
+				tecnico.setCodTecnico(codigo);
+			//	tecnicoService.excluir(tecnico);
+				tecnicoDao.excluir(tecnico);
+				
+		}
 
-	@POST 
-	public Tecnico salvar(Tecnico Tecnico) { 
-		Tecnico = TecnicoDao.salvar(Tecnico);
-	 	return Tecnico;
-	}
 
-	@PUT 
-	public void atualizar(Tecnico Tecnico) { 
-		TecnicoDao.atualizar(Tecnico);
-	}
+		@Override
+		@PUT
+		public void atualizar(Tecnico tecnico){
+			//tecnicoService.atualizar(tecnico);
+			tecnicoDao.atualizar(tecnico);
 
-	@DELETE
-	@Path("/{codigo}")
-	public void deletarTecnico(@PathParam("codigo") Integer codigo) {
-		Tecnico Tecnico = new Tecnico();
-		Tecnico.setCodTecnico(codigo);
-		TecnicoDao.excluir(Tecnico);
-	}
-
+		}
 }
+
+
+

@@ -50,5 +50,6 @@ public class TecnicoDaoImpl implements TecnicoDao {
 		}
 		em.persist(Tecnico);
 
+
 	}
 }

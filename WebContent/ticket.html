@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ticketModule">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Sistema Ticket OS</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-resource.js"></script>
+
+<script src="controll/ticketControl.js"></script>
+<link rel="icon" type="image/ico" href="img/monitor.jpg">
+</head>
+<body ng-controller="ticketControl">
+
+	<div ng-include="'menu.html'"></div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Cadastro de Tickets</div>
+		<div class="panel-body">
+
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#home"
+						aria-controls="home" role="tab" data-toggle="tab">Cadastro</a></li>
+					<li role="presentation"><a href="#profile"
+						aria-controls="profile" role="tab" data-toggle="tab">Dados</a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active espaco_entre_botoes"
+						id="home">
+
+						<form class="form-horizontal">
+							<button type="submit" ng-click="novo();" class="btn btn-primary">Novo</button>
+							<button type="submit" ng-click="salvar();"
+								class="btn btn-success">Salvar</button>
+							<button type="submit" ng-click="pesquisar();"
+								class="btn btn-warning">Pesquisar</button>
+							<button type="submit" ng-click="excluir();"
+								class="btn btn-danger">Excluir</button>
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputcodigo" class="col-sm-1 control-label">Nº
+									Ticket</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.codTicket" disabled="true"
+										placeholder="Codigo">
+								</div>
+							</div>
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputOsBeany" class="col-sm-1 control-label">OS
+									externa</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.osBeany">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputnome" class="col-sm-1 control-label">Cliente</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.nomeResponsavel">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail" class="col-sm-1 control-label">Email</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" ng-model="ticket.email">
+								</div>
+							</div>
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputDataAbertura"
+									class="col-sm-1 control-label">Data Inicio</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.dataAbertura | date:'dd-MM-yyyy HH:mm:ss'">
+								</div>
+							</div>
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputDataFechamento"
+									class="col-sm-1 control-label">Data Fim</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.dataFechamento | date:'dd-MM-yyyy HH:mm:ss'">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputStatus" class="col-sm-1 control-label">Status</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.status">
+								</div>
+							</div>
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputSituacao" class="col-sm-1 control-label">Situação</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.situacao">
+								</div>
+							</div>
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputPrioridade"
+									class="col-sm-1 control-label">Prioridade</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.prioridade">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInput" class="col-sm-1 control-label">Tecnico</label>
+								<div class="col-sm-6">
+									<select class="form-control" ng-model="ticket.tecnico"
+										ng-options="tecnico.nome for tecnico in tecnicos track by tecnico.codTecnico">
+									</select>
+								</div>
+							</div>
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputAssunto" class="col-sm-1 control-label">Assunto</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"
+										ng-model="ticket.assunto">
+								</div>
+							</div>
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputDescricao"
+									class="col-sm-1 control-label">Descrição</label>
+								<div class="col-sm-6">
+									<textarea class="form-control" rows="4"
+										ng-model="ticket.descricao"></textarea>
+								</div>
+							</div>
+
+
+						</form>
+					</div>
+
+					<!-- Segunda aba "dados" -->
+					<div role="tabpanel" class="tab-pane" id="profile">
+						<input type="text" class="form-control" ng-model="criterio"
+							placeholder="O que você está procurando?" /><br>
+						<table class="table table-striped">
+							<th>OS Ticket</th>
+							<th>OS Externa</th>
+							<th>Data</th>
+							<th>Data-Fechamento</th>
+							<th>Cliente</th>
+							<th>Email</th>
+							<th>Situação</th>
+							<th>Prioridade</th>
+							<th>Assunto</th>
+							<th>Descrição</th>
+							<th>Status</th>
+							<th>Tecnico</th>
+
+
+							<!-- nas tags tr eu vou colocar quais campos vao ser inseridos na minha tabela para isso vai ser usado o angularjs -->
+							<tr ng-repeat="ticketTabela in tickets | filter:criterio"
+								ng-click="selecionaTicket(ticketTabela);" href="#home"
+								aria-controls="home" role="tab" data-toggle="tab">
+
+								<td>{{ticketTabela.codTicket}}</td>
+								<td>{{ticketTabela.osBeany}}</td>
+								<td>{{ticketTabela.dataAbertura | date:'dd-MM-yyyy
+									HH:mm:ss'}}</td>
+								<td>{{ticketTabela.dataFechamento | date:'dd-MM-yyyy
+									HH:mm:ss'}}</td>
+								<td>{{ticketTabela.nomeResponsavel}}</td>
+								<td>{{ticketTabela.email}}</td>
+								<td>{{ticketTabela.situacao}}</td>
+								<td>{{ticketTabela.prioridade}}</td>
+								<td>{{ticketTabela.assunto}}</td>
+								<td>{{ticketTabela.descricao}}</td>
+								<td ng-if="ticketTabela.status == true">Ativo</td>
+								<td ng-if="ticketTabela.status == false">Inativo</td>
+								<td ng-if="ticketTabela.status == null">Indefinido</td>
+								<td>{{ticketTabela.tecnico.nome}}</td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+

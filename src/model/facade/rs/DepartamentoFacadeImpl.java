@@ -15,45 +15,69 @@ import javax.ws.rs.core.MediaType;
 
 import model.dao.DepartamentoDao;
 import model.domain.Departamento;
+import model.facade.ws.DepartamentoFacade;
 
-@Path("/Departamento")
-@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Path("/departamento")
+@Consumes({MediaType.APPLICATION_JSON,
+		   MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON,
+	   MediaType.APPLICATION_XML})
 public class DepartamentoFacadeImpl implements DepartamentoFacade {
-
-	@Inject
-	private DepartamentoDao DepartamentoDao;
 	
+	//@Inject
+	//private DepartamentoService departamentoService;
+	
+	@Inject
+	private DepartamentoDao departamentoDao;
+
+	
+	@Override
+	@POST
+	public Departamento salvar(Departamento departamento) {
+	//	return departamentoService.salvar(departamento);
+		return departamentoDao.salvar(departamento);
+	}
+	
+	
+	@Override
 	@GET
 	public List<Departamento> getDepartamentos() {
-		return DepartamentoDao.getDepartamentos(new Departamento());
+		//return departamentoService.getDepartamentos();
+		return departamentoDao.getDepartamentos(new Departamento());
 	}
-
+	
+	
+	@Override
 	@GET
 	@Path("/{codigo}")
 	public List<Departamento> getDepartamentos(@PathParam("codigo") Integer codigo) {
 		Departamento departamento = new Departamento();
 		departamento.setCodDepartamento(codigo);
-		return DepartamentoDao.getDepartamentos(departamento);
+		return departamentoDao.getDepartamentos(departamento);	
 	}
 	
-	@POST 
-	public Departamento salvar(Departamento Departamento) { 
-		Departamento = DepartamentoDao.salvar(Departamento);
-	 	return Departamento;
-	}
 	
-	@PUT 
-	public void atualizar(Departamento departamento) { 
-		DepartamentoDao.atualizar(departamento);
-	}
-
+	
+	@Override
 	@DELETE
 	@Path("/{codigo}")
 	public void deletarDepartamento(@PathParam("codigo") Integer codigo) {
-		Departamento departamento = new Departamento();
-		departamento.setCodDepartamento(codigo);
-		DepartamentoDao.excluir(departamento);
+		
+			Departamento departamento = new Departamento();
+			departamento.setCodDepartamento(codigo);
+		//	departamentoService.excluir(departamento);
+			departamentoDao.excluir(departamento);
+			
 	}
+
+
+	@Override
+	@PUT
+	public void atualizar(Departamento departamento){
+		//departamentoService.atualizar(departamento);
+		departamentoDao.atualizar(departamento);
+	}
+
+	
 
 }

@@ -12,4 +12,5 @@ public interface DepartamentoFacade {
 	void atualizar(Departamento Departamento);
 	void deletarDepartamento(Integer codigo);
 	
+
 }

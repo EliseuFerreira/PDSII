@@ -15,45 +15,71 @@ import javax.ws.rs.core.MediaType;
 
 import model.dao.TicketDao;
 import model.domain.Ticket;
+import model.facade.ws.TicketFacade;
 
-@Path("/Ticket")
-@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+
+@Path("/ticket")
+@Consumes({MediaType.APPLICATION_JSON,
+		   MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON,
+	   MediaType.APPLICATION_XML})
 public class TicketFacadeImpl implements TicketFacade {
-
-	@Inject
-	private TicketDao TicketDao;
 	
-	@GET
-	public List<Ticket> getTickets() {
-		return TicketDao.getTickets(new Ticket());
-	}
+	//@Inject
+		//private TicketService ticketService;
+		
+		@Inject
+		private TicketDao ticketDao;
 
-	@GET
-	@Path("/{codigo}")
-	public List<Ticket> getTickets(@PathParam("codigo") Integer codigo) {
-		Ticket Ticket = new Ticket();
-		Ticket.setCodTicket(codigo);
-		return TicketDao.getTickets(Ticket);
-	}
-	
-	@POST 
-	public Ticket salvar(Ticket Ticket) { 
-		Ticket = TicketDao.salvar(Ticket);
-	 	return Ticket;
-	}
-	
-	@PUT 
-	public void atualizar(Ticket Ticket) { 
-		TicketDao.atualizar(Ticket);
-	}
+		
+		@Override
+		@POST
+		public Ticket salvar(Ticket ticket) {
+		//	return ticketService.salvar(ticket);
+			return ticketDao.salvar(ticket);
+		}
+		
+		
+		@Override
+		@GET
+		public List<Ticket> getTickets() {
+			//return ticketService.getTickets();
+			return ticketDao.getTickets(new Ticket());
+		}
+		
+		
+		@Override
+		@GET
+		@Path("/{codigo}")
+		public List<Ticket> getTickets(@PathParam("codigo") Integer codigo) {
+			Ticket ticket = new Ticket();
+			ticket.setCodTicket(codigo);
+			return ticketDao.getTickets(ticket);	
+		}
+		
+		
+		
+		@Override
+		@DELETE
+		@Path("/{codigo}")
+		public void deletarTicket(@PathParam("codigo") Integer codigo) {
+			
+				Ticket ticket = new Ticket();
+				ticket.setCodTicket(codigo);
+			//	ticketService.excluir(ticket);
+				ticketDao.excluir(ticket);
+				
+		}
 
-	@DELETE
-	@Path("/{codigo}")
-	public void deletarTicket(@PathParam("codigo") Integer codigo) {
-		Ticket Ticket = new Ticket();
-		Ticket.setCodTicket(codigo);
-		TicketDao.excluir(Ticket);
-	}
 
+		@Override
+		@PUT
+		public void atualizar(Ticket ticket){
+			//ticketService.atualizar(ticket);
+			ticketDao.atualizar(ticket);
+		}
 }
+
+
+
+

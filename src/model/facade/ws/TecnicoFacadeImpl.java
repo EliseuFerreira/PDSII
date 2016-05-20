@@ -67,6 +67,5 @@ public class TecnicoFacadeImpl implements TecnicoFacade {
 		Tecnico.setCodTecnico(codigo);
 		TecnicoDao.excluir(Tecnico);
 	}
-
-
 }
+

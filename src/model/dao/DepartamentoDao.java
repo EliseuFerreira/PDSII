@@ -11,3 +11,4 @@ public interface DepartamentoDao {
 	Departamento salvar (Departamento Departamento);
 	public void atualizar(Departamento Departamento);
 }
+

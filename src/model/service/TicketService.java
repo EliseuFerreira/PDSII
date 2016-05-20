@@ -1,18 +1,19 @@
-package model.facade.ws;
+package model.service;
 
 import java.util.List;
 
 import model.domain.Ticket;
 
-public interface TicketFacade {
+public interface TicketService {
+
+	List<Ticket> getTickets(Integer codigo);
 
 	List<Ticket> getTickets();
 
-	List<Ticket> getTickets(Integer codigo);
 	Ticket salvar(Ticket ticket);
 
-	void atualizar(Ticket ticket);
+	void excluir(Ticket ticket);
 
-	void deletarTicket(Integer ticket);
+	void atualizar(Ticket ticket);
 
 }

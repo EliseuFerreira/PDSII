@@ -6,15 +6,11 @@ import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.xml.ws.BindingType;
 
 import model.dao.DepartamentoDao;
 import model.domain.Departamento;
 
 @WebService(serviceName="ws/Departamento")
-@SOAPBinding(style = SOAPBinding.Style.RPC)
-@BindingType(value= javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING)
 public class DepartamentoFacadeImpl implements DepartamentoFacade {
 	
 	@Inject
@@ -24,6 +20,7 @@ public class DepartamentoFacadeImpl implements DepartamentoFacade {
 	 * @see model.facade.ws.DepartamentoFacade#getDepartamentos()
 	 */
 	
+	@Override
 	@WebMethod
 	public List<Departamento> getDepartamentos() {
 		return DepartamentoDao.getDepartamentos(new Departamento());
@@ -32,7 +29,7 @@ public class DepartamentoFacadeImpl implements DepartamentoFacade {
 	/* (non-Javadoc)
 	 * @see model.facade.ws.DepartamentoFacade#getDepartamentos(model.domain.Departamento)
 	 */
-	
+	@Override
 	@WebMethod(operationName="getDepartamentoCodigo")
 	public List<Departamento> getDepartamentos(@WebParam(name="codDepartamento")Integer codigo) {
 		Departamento Departamento = new Departamento();
@@ -43,7 +40,7 @@ public class DepartamentoFacadeImpl implements DepartamentoFacade {
 	/* (non-Javadoc)
 	 * @see model.facade.ws.DepartamentoFacade#salvar(model.domain.Departamento)
 	 */
-
+	@Override
 	@WebMethod
 	public Departamento salvar(@WebParam(name="Departamento")Departamento Departamento) {
 		return DepartamentoDao.salvar(Departamento);
@@ -52,7 +49,7 @@ public class DepartamentoFacadeImpl implements DepartamentoFacade {
 	/* (non-Javadoc)
 	 * @see model.facade.ws.DepartamentoFacade#atualizar(model.domain.Departamento)
 	 */
-	
+	@Override
 	@WebMethod
 	public void atualizar(@WebParam(name="Departamento")Departamento Departamento) {
 		DepartamentoDao.atualizar(Departamento);
@@ -60,7 +57,7 @@ public class DepartamentoFacadeImpl implements DepartamentoFacade {
 	/* (non-Javadoc)
 	 * @see model.facade.ws.DepartamentoFacade#excluir(model.domain.Departamento)
 	 */
-	
+	@Override
 	@WebMethod
 	public void deletarDepartamento(@WebParam(name="codDepartamento")Integer codigo){
 		Departamento Departamento = new Departamento();

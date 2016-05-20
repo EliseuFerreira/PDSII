@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tecnicoModule">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Sistema Ticket OS</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-resource.js"></script>
+
+<script src="controll/tecnicoControl.js"></script>
+<link rel="icon" type="image/ico" href="img/monitor.jpg">
+</head>
+<body ng-controller="tecnicoControl">
+
+	<div ng-include="'menu.html'"></div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Cadastro de Tecnicos</div>
+		<div class="panel-body">
+
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#home"
+						aria-controls="home" role="tab" data-toggle="tab">Cadastro</a></li>
+					<li role="presentation"><a href="#profile"
+						aria-controls="profile" role="tab" data-toggle="tab">Dados</a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active espaco_entre_botoes"
+						id="home">
+
+						<form class="form-horizontal">
+							<button type="submit" ng-click="novo();" class="btn btn-primary">Novo</button>
+							<button type="submit" ng-click="salvar();"
+								class="btn btn-success">Salvar</button>
+							<button type="submit" ng-click="pesquisar();"
+								class="btn btn-warning">Pesquisar</button>
+							<button type="submit" ng-click="excluir();"
+								class="btn btn-danger">Excluir</button>
+
+
+
+							<div class="form-group espaco_entre_botoes">
+								<label for="exampleInputcodigo" class="col-sm-1 control-label">Código</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control"
+										ng-model="tecnico.codTecnico" disabled="true"
+										placeholder="Codigo">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputnome" class="col-sm-1 control-label">Nome</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" ng-model="tecnico.nome">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail" class="col-sm-1 control-label">Email</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control"
+										ng-model="tecnico.email">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputStatus" class="col-sm-1 control-label">Status</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control"
+										ng-model="tecnico.status">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInput" class="col-sm-1 control-label">Departamento</label>
+								<div class="col-sm-5">
+									<select class="form-control" ng-model="tecnico.departamento"
+										ng-options="departamento.nome for departamento in departamentos track by departamento.codDepartamento">
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- Segunda aba "dados" -->
+					<div role="tabpanel" class="tab-pane" id="profile">
+						<input type="text" class="form-control" ng-model="criterio"
+							placeholder="O que você está procurando?" /><br>
+						<table class="table table-striped">
+							<th>Código</th>
+							<th>Nome</th>
+							<th>Email</th>
+							<th>Status</th>
+							<th>Departamento</th>
+
+							<!-- nas tags tr eu vou colocar quais campos vao ser inseridos na minha tabela para isso vai ser usado o angularjs -->
+							<tr ng-repeat="tecnicoTabela in tecnicos | filter:criterio"
+								ng-click="selecionaTecnico(tecnicoTabela);" href="#home"
+								aria-controls="home" role="tab" data-toggle="tab">
+
+								<td>{{tecnicoTabela.codTecnico}}</td>
+								<td>{{tecnicoTabela.nome}}</td>
+								<td>{{tecnicoTabela.email}}</td>
+								<td ng-if="tecnicoTabela.status == true">Ativo</td>
+								<td ng-if="tecnicoTabela.status == false">Inativo</td>
+								<td ng-if="tecnicoTabela.status == null">Indefinido</td>
+								<td>{{tecnicoTabela.departamento.nome}}</td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

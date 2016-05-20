@@ -67,72 +67,37 @@ public class Ticket implements Serializable {
 
 
 
-	/**
-	 * @return the codTicket
-	 */
 	public Integer getCodTicket() {
 		return codTicket;
 	}
 
-
-
-	/**
-	 * @param codTicket the codTicket to set
-	 */
 	public void setCodTicket(Integer codTicket) {
 		this.codTicket = codTicket;
 	}
 
 
-
-	/**
-	 * @return the osBeany
-	 */
 	public Integer getOsBeany() {
 		return osBeany;
 	}
 
-
-
-	/**
-	 * @param osBeany the osBeany to set
-	 */
 	public void setOsBeany(Integer osBeany) {
 		this.osBeany = osBeany;
 	}
 
-
-
-	/**
-	 * @return the nomeResponsavel
-	 */
 	public String getNomeResponsavel() {
 		return nomeResponsavel;
 	}
 
 
-
-	/**
-	 * @param nomeResponsavel the nomeResponsavel to set
-	 */
 	public void setNomeResponsavel(String nomeResponsavel) {
 		this.nomeResponsavel = nomeResponsavel;
 	}
 
-
-
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
 
-
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -316,8 +281,4 @@ public class Ticket implements Serializable {
 		return true;
 	}
 
-	
-	
-	
-	
 }

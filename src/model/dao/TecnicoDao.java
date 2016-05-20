@@ -11,3 +11,4 @@ public interface TecnicoDao {
 	Tecnico salvar (Tecnico Tecnico);
 	public void atualizar(Tecnico Tecnico);
 }
+

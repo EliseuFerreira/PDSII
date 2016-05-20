@@ -5,9 +5,13 @@ import java.util.List;
 import model.domain.Ticket;
 
 public interface TicketDao {
+
+
+	public List<Ticket> getTickets(Ticket ticket);
+
+	public void excluir(Ticket ticket);
 	
-	List<Ticket> getTickets(Ticket Ticket);
-	public void excluir(Ticket Ticket);
-	public Ticket salvar (Ticket Ticket);
-	public void atualizar(Ticket Ticket);
+	public Ticket salvar(Ticket ticket);
+	
+	public void atualizar(Ticket ticket);
 }
