@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import util.StatusTecnico;
+
 @XmlRootElement
 @Entity
 @Table(name="tb_tecnico")
@@ -33,8 +35,8 @@ public class Tecnico implements Serializable {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="status")
-	private Boolean status;
+	@Column(name = "status")
+	private StatusTecnico status;
 	
 	@OneToMany(mappedBy="tecnico")
 	private List<Ticket>tickets;
@@ -97,25 +99,16 @@ public class Tecnico implements Serializable {
 	}
 
 
-	/**
-	 * @return the status
-	 */
-	public Boolean getStatus() {
+	public StatusTecnico getStatus() {
 		return status;
 	}
 
 
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(Boolean status) {
+	public void setStatus(StatusTecnico status) {
 		this.status = status;
 	}
 
 
-	/**
-	 * @return the tickets
-	 */
 	@XmlTransient
 	public List<Ticket> getTickets() {
 		return tickets;

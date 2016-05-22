@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import util.Prioridade;
+import util.Situacao;
+import util.Status;
+
 @XmlRootElement
 @Entity
 @Table(name="tb_ticket")
@@ -48,13 +52,13 @@ public class Ticket implements Serializable {
 	private Integer osBeany;
 
 	@Column(name = "prioridade")
-	private String prioridade;
-	
+	private Prioridade prioridade;
+
 	@Column(name = "situacao")
-	private String situacao;
+	private Situacao situacao;
 	
 	@Column(name = "status")
-	private Boolean status;
+	private Status status;
 
 	@ManyToOne
 	@JoinColumn(name="tecnico", referencedColumnName="codTecnico")
@@ -139,30 +143,14 @@ public class Ticket implements Serializable {
 	}
 
 
-
-	/**
-	 * @return the prioridade
-	 */
-	public String getPrioridade() {
+	public Prioridade getPrioridade() {
 		return prioridade;
 	}
 
 
 
-	/**
-	 * @param prioridade the prioridade to set
-	 */
-	public void setPrioridade(String prioridade) {
+	public void setPrioridade(Prioridade prioridade) {
 		this.prioridade = prioridade;
-	}
-
-
-
-	/**
-	 * @return the dataAbertura
-	 */
-	public Date getDataAbertura() {
-		return dataAbertura;
 	}
 
 
@@ -193,38 +181,19 @@ public class Ticket implements Serializable {
 	}
 
 
-
-	/**
-	 * @return the situacao
-	 */
-	public String getSituacao() {
+	public Situacao getSituacao() {
 		return situacao;
 	}
 
-
-
-	/**
-	 * @param situacao the situacao to set
-	 */
-	public void setSituacao(String situacao) {
+	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
 
-
-
-	/**
-	 * @return the status
-	 */
-	public Boolean getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(Boolean status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

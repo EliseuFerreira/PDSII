@@ -46,11 +46,10 @@
 							<button type="submit" ng-click="novo();" class="btn btn-primary">Novo</button>
 							<button type="submit" ng-click="salvar();"
 								class="btn btn-success">Salvar</button>
-							<button type="submit" ng-click="pesquisar();"
-								class="btn btn-warning">Pesquisar</button>
 							<button type="submit" ng-click="excluir();"
 								class="btn btn-danger">Excluir</button>
-
+							<button type="submit" class="btn btn-warning" href="#profile" 
+								aria-controls="profile" role="tab" data-toggle="tab">Visualizar Tecnicos</button>
 
 
 							<div class="form-group espaco_entre_botoes">
@@ -79,8 +78,10 @@
 							<div class="form-group">
 								<label for="exampleInputStatus" class="col-sm-1 control-label">Status</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control"
-										ng-model="tecnico.status">
+									<select class="form-control" ng-model="tecnico.status" />
+										<option value="ATIVO">Ativo</option>
+										<option value="INATIVO">Inativo</option>
+									</select>
 								</div>
 							</div>
 
@@ -105,20 +106,21 @@
 							<th>Email</th>
 							<th>Status</th>
 							<th>Departamento</th>
+							<th>Ação</th>
 
 							<!-- nas tags tr eu vou colocar quais campos vao ser inseridos na minha tabela para isso vai ser usado o angularjs -->
 							<tr ng-repeat="tecnicoTabela in tecnicos | filter:criterio"
-								ng-click="selecionaTecnico(tecnicoTabela);" href="#home"
-								aria-controls="home" role="tab" data-toggle="tab">
+								ng-click="selecionaTecnico(tecnicoTabela);">
 
 								<td>{{tecnicoTabela.codTecnico}}</td>
 								<td>{{tecnicoTabela.nome}}</td>
 								<td>{{tecnicoTabela.email}}</td>
-								<td ng-if="tecnicoTabela.status == true">Ativo</td>
-								<td ng-if="tecnicoTabela.status == false">Inativo</td>
-								<td ng-if="tecnicoTabela.status == null">Indefinido</td>
+								<td>{{tecnicoTabela.status}}</td>
 								<td>{{tecnicoTabela.departamento.nome}}</td>
-
+								
+								<td class="actions">
+									<a class="btn btn-success btn-xs" href="#home" aria-controls="home" role="tab" data-toggle="tab">Visualizar</a>
+								</td>
 							</tr>
 						</table>
 					</div>

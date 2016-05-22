@@ -50,11 +50,10 @@
 							<button type="submit" ng-click="novo();" class="btn btn-primary">Novo</button>
 							<button type="submit" ng-click="salvar();"
 								class="btn btn-success">Salvar</button>
-							<button type="submit" ng-click="pesquisar();"
-								class="btn btn-warning">Pesquisar</button>
 							<button type="submit" ng-click="excluir();"
 								class="btn btn-danger">Excluir</button>
-
+							<button type="submit" class="btn btn-warning" href="#profile" 
+								aria-controls="profile" role="tab" data-toggle="tab">Visualizar Departamentos</button>
 
 
 							<div class="form-group espaco_entre_botoes">
@@ -86,14 +85,17 @@
 							<!-- th vai ser o nome dos campos da minha tabela -->
 							<th>Código</th>
 							<th>Nome</th>
+							<th>Ação</th>
 
 							<!-- nas tags tr eu vou colocar quais campos vao ser inseridos na minha tabela para isso vai ser usado o angularjs -->
-							<tr ng-repeat="departamentoTabela in departamentos| filter:criterio" ng-click="selecionaDepartamento(departamentoTabela);" href="#home" aria-controls="home" role="tab" data-toggle="tab">
+							<tr ng-repeat="departamentoTabela in departamentos| filter:criterio" ng-click="selecionaDepartamento(departamentoTabela);">
 
 								<td>{{departamentoTabela.codDepartamento}}</td>
 								<td>{{departamentoTabela.nome}}</td>
-
-
+								
+								<td class="actions">
+									<a class="btn btn-success btn-xs" href="#home" aria-controls="home" role="tab" data-toggle="tab">Visualizar</a>
+								</td>
 							</tr>
 						</table>
 					</div>

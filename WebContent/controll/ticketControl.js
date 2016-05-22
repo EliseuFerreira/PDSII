@@ -71,6 +71,7 @@ $scope.excluir = function(){
 
 $scope.novo = function(){
 	$scope.ticket = "";
+	
 }
 
 
