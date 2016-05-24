@@ -1,5 +1,6 @@
 package model.facade.ws;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,8 +10,8 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.BindingType;
 
-import model.dao.TicketDao;
 import model.domain.Ticket;
+import model.service.TicketService;
 
 @WebService(serviceName="ws/Ticket")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
@@ -18,7 +19,9 @@ import model.domain.Ticket;
 public class TicketFacadeImpl implements TicketFacade {
 	
 	@Inject
-	private TicketDao TicketDao;
+	private TicketService ticketService;
+	
+	Date dataSistema = new Date();
 	
 	/* (non-Javadoc)
 	 * @see model.facade.ws.TicketFacade#getTickets()
@@ -26,7 +29,7 @@ public class TicketFacadeImpl implements TicketFacade {
 	
 	@WebMethod
 	public List<Ticket> getTickets() {
-		return TicketDao.getTickets(new Ticket());
+		return ticketService.getTickets();
 	}
 	
 	/* (non-Javadoc)
@@ -37,7 +40,7 @@ public class TicketFacadeImpl implements TicketFacade {
 	public List<Ticket> getTickets(@WebParam(name="codTicket")Integer codigo) {
 		Ticket Ticket = new Ticket();
 		Ticket.setCodTicket(codigo);
-		return TicketDao.getTickets(Ticket);
+		return ticketService.getTickets(codigo);	
 	}
 	
 	/* (non-Javadoc)
@@ -46,7 +49,7 @@ public class TicketFacadeImpl implements TicketFacade {
 
 	@WebMethod
 	public Ticket salvar(@WebParam(name="Ticket")Ticket Ticket) {
-		return TicketDao.salvar(Ticket);
+		return ticketService.salvar(Ticket);
 	}
 	
 	/* (non-Javadoc)
@@ -55,7 +58,7 @@ public class TicketFacadeImpl implements TicketFacade {
 	
 	@WebMethod
 	public void atualizar(@WebParam(name="Ticket")Ticket Ticket) {
-		TicketDao.atualizar(Ticket);
+		ticketService.atualizar(Ticket);
 	}
 	/* (non-Javadoc)
 	 * @see model.facade.ws.TicketFacade#excluir(model.domain.Ticket)
@@ -65,7 +68,7 @@ public class TicketFacadeImpl implements TicketFacade {
 	public void deletarTicket(@WebParam(name="codTicket")Integer codigo){
 		Ticket Ticket = new Ticket();
 		Ticket.setCodTicket(codigo);
-		TicketDao.excluir(Ticket);
+		ticketService.excluir(Ticket);
 	}
 
 

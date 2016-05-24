@@ -66,6 +66,26 @@ public class Ticket implements Serializable {
 	
 	
 	
+	public Ticket(Integer codTicket, String assunto, Date dataAbertura, Date dataFechamento, String descricao,
+			String email, String nomeResponsavel, Integer osBeany, Prioridade prioridade, Situacao situacao,
+			Status status, Tecnico tecnico) {
+		super();
+		this.codTicket = codTicket;
+		this.assunto = assunto;
+		this.dataAbertura = dataAbertura;
+		this.dataFechamento = dataFechamento;
+		this.descricao = descricao;
+		this.email = email;
+		this.nomeResponsavel = nomeResponsavel;
+		this.osBeany = osBeany;
+		this.prioridade = prioridade;
+		this.situacao = situacao;
+		this.status = status;
+		this.tecnico = tecnico;
+	}
+
+
+
 	public Ticket(){
 	}
 
@@ -154,10 +174,12 @@ public class Ticket implements Serializable {
 	}
 
 
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
 
-	/**
-	 * @param dataAbertura the dataAbertura to set
-	 */
+
+
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}

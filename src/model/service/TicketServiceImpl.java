@@ -1,5 +1,6 @@
 package model.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,7 +10,8 @@ import model.dao.TicketDaoImpl;
 import model.domain.Ticket;
 
 public class TicketServiceImpl implements TicketService {
-
+	
+	
 	@Inject
 	private TicketDaoImpl ticketDaoImpl;
 	
@@ -25,10 +27,6 @@ public class TicketServiceImpl implements TicketService {
 		return ticketDaoImpl.getTickets(ticket);
 	}
 
-
-	
-
-	
 	@Override
 	@Transactional
 	public Ticket salvar(Ticket ticket) {

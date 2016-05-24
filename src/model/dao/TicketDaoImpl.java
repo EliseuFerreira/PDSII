@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import model.domain.Ticket;
 
 public class TicketDaoImpl implements TicketDao {
 
+	Date dataSistema = new Date();
 
 	@PersistenceContext(unitName="SistemaTicket")
 	private EntityManager em;
@@ -38,18 +40,35 @@ public class TicketDaoImpl implements TicketDao {
 	@Override
 	@Transactional
 	public Ticket salvar (Ticket Ticket){
-		em.persist(Ticket);
-		return Ticket;
+		Ticket ticke = new Ticket(null, Ticket.getAssunto(),dataSistema,Ticket.getDataFechamento(),Ticket.getDescricao(),Ticket.getEmail(),Ticket.getNomeResponsavel(),Ticket.getOsBeany(),Ticket.getPrioridade(), Ticket.getSituacao(),Ticket.getStatus(),Ticket.getTecnico());
+		
+		em.persist(ticke);
+		return ticke;
 	}
 	
 	@Override
 	@Transactional
 	public void atualizar (Ticket Ticket){
 		if (Ticket.getCodTicket() != null) {
-			Ticket = em.merge(Ticket);
+			//incluir data se foi fechado
+			System.out.println("teste ok" + Ticket.getStatus().getStatus());
+
+			if(Ticket.getStatus().getStatus()=="Fechado"){
+				System.out.println("teste ok1");
+				Ticket ticke = new Ticket(Ticket.getCodTicket(), Ticket.getAssunto(),Ticket.getDataAbertura(),dataSistema,Ticket.getDescricao(),Ticket.getEmail(),Ticket.getNomeResponsavel(),Ticket.getOsBeany(),Ticket.getPrioridade(), Ticket.getSituacao(),Ticket.getStatus(),Ticket.getTecnico());
+				em.merge(ticke);
+			}else{
+				em.merge(Ticket);
+			}
+
+		}else{
+			//Incluir data se o ticket foi aberto
+			Ticket ticke = new Ticket(null, Ticket.getAssunto(),dataSistema,Ticket.getDataFechamento(),Ticket.getDescricao(),Ticket.getEmail(),Ticket.getNomeResponsavel(),Ticket.getOsBeany(),Ticket.getPrioridade(), Ticket.getSituacao(),Ticket.getStatus(),Ticket.getTecnico());
+			em.persist(ticke);
 		}
-		em.persist(Ticket);
+		
 
 	}
+
 }
 

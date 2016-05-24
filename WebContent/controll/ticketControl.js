@@ -32,7 +32,7 @@ $scope.selecionaTicket = function(ticket){
 
 
 $scope.salvar = function(){
-	if($scope.ticket.codigo == ''){
+	if($scope.ticket.codTicket == ''){
 		$http.post(urlTicket,$scope.ticket).success(function(ticket){
 			$scope.tickets.push($scope.ticket);
 			$scope.novo();

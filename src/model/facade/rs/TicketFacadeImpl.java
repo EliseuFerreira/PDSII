@@ -13,9 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import model.dao.TicketDao;
 import model.domain.Ticket;
 import model.facade.ws.TicketFacade;
+import model.service.TicketService;
 
 
 @Path("/ticket")
@@ -29,22 +29,22 @@ public class TicketFacadeImpl implements TicketFacade {
 		//private TicketService ticketService;
 		
 		@Inject
-		private TicketDao ticketDao;
+		private TicketService ticketService;
 
 		
 		@Override
 		@POST
 		public Ticket salvar(Ticket ticket) {
-		//	return ticketService.salvar(ticket);
-			return ticketDao.salvar(ticket);
+			
+			return ticketService.salvar(ticket);
+
 		}
 		
 		
 		@Override
 		@GET
 		public List<Ticket> getTickets() {
-			//return ticketService.getTickets();
-			return ticketDao.getTickets(new Ticket());
+			return ticketService.getTickets();
 		}
 		
 		
@@ -54,7 +54,7 @@ public class TicketFacadeImpl implements TicketFacade {
 		public List<Ticket> getTickets(@PathParam("codigo") Integer codigo) {
 			Ticket ticket = new Ticket();
 			ticket.setCodTicket(codigo);
-			return ticketDao.getTickets(ticket);	
+			return ticketService.getTickets(codigo);	
 		}
 		
 		
@@ -66,8 +66,7 @@ public class TicketFacadeImpl implements TicketFacade {
 			
 				Ticket ticket = new Ticket();
 				ticket.setCodTicket(codigo);
-			//	ticketService.excluir(ticket);
-				ticketDao.excluir(ticket);
+				ticketService.excluir(ticket);
 				
 		}
 
@@ -75,8 +74,7 @@ public class TicketFacadeImpl implements TicketFacade {
 		@Override
 		@PUT
 		public void atualizar(Ticket ticket){
-			//ticketService.atualizar(ticket);
-			ticketDao.atualizar(ticket);
+			ticketService.atualizar(ticket);
 		}
 }
 
