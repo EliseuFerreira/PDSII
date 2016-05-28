@@ -25,19 +25,10 @@
 	<div ng-include="'menu.html'"></div>
 
 	<div class="panel panel-default">
-		<div class="panel-heading">Cadastro de Ticket</div>
+		<div class="panel-heading">Caixa de entrada</div>
 		<div class="panel-body">
 
 			<div>
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#home"
-						aria-controls="home" role="tab" data-toggle="tab">Cadastro</a></li>
-					<li role="presentation"><a href="#profile"
-						aria-controls="profile" role="tab" data-toggle="tab">Dados</a></li>
-
-				</ul>
-
-
 				<table class="table table-hover">
 					<th>OS Ticket</th>
 					<th>OS Externa</th>
@@ -48,8 +39,8 @@
 					<th>Status</th>
 
 
-					<!-- nas tags tr eu vou colocar quais campos vao ser inseridos na minha tabela para isso vai ser usado o angularjs -->
-					<tr ng-repeat="ticketTabela in tickets | filter:criterio"
+					<tr class="active"
+						ng-repeat="ticketTabela in tickets | limitTo:limite| filter:criterio"
 						ng-click="selecionaTicket(ticketTabela);">
 
 						<td>{{ticketTabela.codTicket}}</td>
@@ -60,28 +51,43 @@
 						<td>{{ticketTabela.assunto}}</td>
 						<td>{{ticketTabela.prioridade}}</td>
 						<td>{{ticketTabela.status}}</td>
-
 					</tr>
 				</table>
 
-
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active espaco_entre_botoes"
-						id="home">
+					<div class="tab-pane active espaco_entre_botoes">
+
 
 						<form class="form-horizontal">
-							<button type="submit" ng-click="novo();" class="btn btn-primary">Novo</button>
-							<button type="submit" ng-click="salvar();"
-								class="btn btn-success">Salvar</button>
-							<button type="submit" ng-click="excluir();"
-								class="btn btn-danger">Excluir</button>
-							<button type="submit" class="btn btn-warning" href="#profile"
-								aria-controls="profile" role="tab" data-toggle="tab">Visualizar
-								Tickets</button>
-
-
 							<div class="form-group espaco_entre_botoes">
+								<div class="col-sm-10">
+									<button type="submit" ng-click="novo();"
+										class="btn btn-primary">Novo</button>
+									<button type="submit" ng-click="salvar();"
+										class="btn btn-success">Salvar</button>
+								</div>
+
+								<label for="exampleInputItem" class="col-sm-1 control-label">Ver
+									mais</label>
+
+								<div class="col-sm-1">
+									<select class="form-control" ng-selected="carregaMais();"
+										ng-model="valor">
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="25">25</option>
+										<option value="50">50</option>
+										<option value="100">100</option>
+										<option value="150">150</option>
+									</select>
+								</div>
+
+							</div>
+
+
+							<div class="form-group espaco_entre_botoes has-success">
 								<label for="exampleInputcodigo" class="col-sm-1 control-label">Nº
 									Ticket</label>
 								<div class="col-sm-2">
@@ -104,7 +110,7 @@
 
 							</div>
 
-							<div class="form-group espaco_entre_botoes">
+							<div class="form-group espaco_entre_botoes has-success">
 								<label for="exampleInputOsBeany" class="col-sm-1 control-label">OS
 									externa</label>
 								<div class="col-sm-2">
@@ -126,7 +132,7 @@
 								</div>
 							</div>
 
-							<div class="form-group espaco_entre_botoes">
+							<div class="form-group espaco_entre_botoes has-success">
 
 								<label for="exampleInputStatus" class="col-sm-1 control-label">Status</label>
 								<div class="col-sm-2">
@@ -163,18 +169,18 @@
 								</div>
 							</div>
 
-							<div class="form-group espaco_entre_botoes">
+							<div class="form-group espaco_entre_botoes has-success">
 								<label for="exampleInputAssunto" class="col-sm-1 control-label">Assunto</label>
 								<div class="col-sm-11">
 									<input type="text" class="form-control"
 										ng-model="ticket.assunto">
 								</div>
 							</div>
-							<div class="form-group espaco_entre_botoes">
+							<div class="form-group espaco_entre_botoes has-success">
 								<label for="exampleInputDescricao"
 									class="col-sm-1 control-label">Descrição</label>
 								<div class="col-sm-11">
-									<textarea class="form-control" rows="4"
+									<textarea class="form-control" rows="3"
 										ng-model="ticket.descricao"></textarea>
 								</div>
 							</div>

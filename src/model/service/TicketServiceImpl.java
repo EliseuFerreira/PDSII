@@ -15,7 +15,6 @@ public class TicketServiceImpl implements TicketService {
 	@Inject
 	private TicketDaoImpl ticketDaoImpl;
 	
-	
 	@Override
 	public List<Ticket> getTickets() {
 		return ticketDaoImpl.getTickets(new Ticket());
@@ -32,9 +31,6 @@ public class TicketServiceImpl implements TicketService {
 	public Ticket salvar(Ticket ticket) {
 		return ticketDaoImpl.salvar(ticket);
 	}
-
-	
-	
 	
 	@Override
 	@Transactional
@@ -42,8 +38,6 @@ public class TicketServiceImpl implements TicketService {
 		ticketDaoImpl.excluir(ticket);
 		
 	}
-
-	
 
 	@Override
 	@Transactional

@@ -32,10 +32,6 @@ public class TicketFacadeImpl implements TicketFacade {
 		return ticketService.getTickets();
 	}
 	
-	/* (non-Javadoc)
-	 * @see model.facade.ws.TicketFacade#getTickets(model.domain.Ticket)
-	 */
-	
 	@WebMethod(operationName="getTicketCodigo")
 	public List<Ticket> getTickets(@WebParam(name="codTicket")Integer codigo) {
 		Ticket Ticket = new Ticket();
@@ -43,26 +39,16 @@ public class TicketFacadeImpl implements TicketFacade {
 		return ticketService.getTickets(codigo);	
 	}
 	
-	/* (non-Javadoc)
-	 * @see model.facade.ws.TicketFacade#salvar(model.domain.Ticket)
-	 */
-
 	@WebMethod
 	public Ticket salvar(@WebParam(name="Ticket")Ticket Ticket) {
 		return ticketService.salvar(Ticket);
 	}
 	
-	/* (non-Javadoc)
-	 * @see model.facade.ws.TicketFacade#atualizar(model.domain.Ticket)
-	 */
 	
 	@WebMethod
 	public void atualizar(@WebParam(name="Ticket")Ticket Ticket) {
 		ticketService.atualizar(Ticket);
 	}
-	/* (non-Javadoc)
-	 * @see model.facade.ws.TicketFacade#excluir(model.domain.Ticket)
-	 */
 	
 	@WebMethod
 	public void deletarTicket(@WebParam(name="codTicket")Integer codigo){
@@ -70,7 +56,5 @@ public class TicketFacadeImpl implements TicketFacade {
 		Ticket.setCodTicket(codigo);
 		ticketService.excluir(Ticket);
 	}
-
-
 }
 

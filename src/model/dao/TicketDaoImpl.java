@@ -51,10 +51,7 @@ public class TicketDaoImpl implements TicketDao {
 	public void atualizar (Ticket Ticket){
 		if (Ticket.getCodTicket() != null) {
 			//incluir data se foi fechado
-			System.out.println("teste ok" + Ticket.getStatus().getStatus());
-
 			if(Ticket.getStatus().getStatus()=="Fechado"){
-				System.out.println("teste ok1");
 				Ticket ticke = new Ticket(Ticket.getCodTicket(), Ticket.getAssunto(),Ticket.getDataAbertura(),dataSistema,Ticket.getDescricao(),Ticket.getEmail(),Ticket.getNomeResponsavel(),Ticket.getOsBeany(),Ticket.getPrioridade(), Ticket.getSituacao(),Ticket.getStatus(),Ticket.getTecnico());
 				em.merge(ticke);
 			}else{
