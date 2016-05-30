@@ -5,20 +5,24 @@ ticketModule.controller("ticketControl",function($scope,$http) {
 
 	urlTicket = 'http://localhost:8080/Ticket/rs/ticket';
 	urlTecnico = 'http://localhost:8080/Ticket/rs/tecnico';
-	
-	
+
 $scope.pesquisarTicket = function(){
 	$http.get(urlTicket).success(function(tickets){
 		$scope.tickets = tickets;
-		var total = $scope.tickets.length;
+		$scope.total = $scope.tickets.length;
 		}).error(function(erro){
 	alert(erro);
 		});
 }
 
-//Criei esta função para limitar a lista de Tickets
+// Criei esta função para limitar a lista de Tickets
 function carregarLista() {
-    $scope.limite = $scope.valor;
+	$scope.limite = $scope.valor;
+    if($scope.limite > $scope.total){
+    	$scope.limite = $scope.total;
+    }else{
+    	$scope.limite = $scope.valor;
+    }
 
     if($scope.limite == null || $scope.limite <5){
     	$scope.limite = 5;

@@ -22,11 +22,13 @@ public class TicketDaoImpl implements TicketDao {
 		StringBuffer hql = new StringBuffer("from Ticket c" + " where 1 = 1");
 		if(Ticket.getCodTicket()!= null){
 			hql.append(" and c.codTicket = :codigo");
+			hql.append(" ORDER BY dataAbertura desc");
 		}
 		javax.persistence.Query query = em.createQuery(hql.toString());
 		if(Ticket.getCodTicket() != null){
 			((javax.persistence.Query) query).setParameter("codigo", Ticket.getCodTicket());
 		}
+		
 		return ((javax.persistence.Query) query).getResultList();
 	}
 	

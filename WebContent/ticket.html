@@ -19,6 +19,7 @@
 
 <script src="controll/ticketControl.js"></script>
 <link rel="icon" type="image/ico" href="img/monitor.jpg">
+
 </head>
 <body ng-controller="ticketControl">
 
@@ -42,7 +43,6 @@
 					<tr class="active"
 						ng-repeat="ticketTabela in tickets | limitTo:limite| filter:criterio"
 						ng-click="selecionaTicket(ticketTabela);">
-
 						<td>{{ticketTabela.codTicket}}</td>
 						<td>{{ticketTabela.osBeany}}</td>
 						<td>{{ticketTabela.dataAbertura | date:'dd-MM-yyyy
@@ -61,15 +61,15 @@
 
 						<form class="form-horizontal">
 							<div class="form-group espaco_entre_botoes">
-								<div class="col-sm-10">
+								<div class="col-sm-8">
 									<button type="submit" ng-click="novo();"
-										class="btn btn-primary">Novo</button>
+										class="btn btn-primary ">Novo</button>
 									<button type="submit" ng-click="salvar();"
 										class="btn btn-success">Salvar</button>
 								</div>
 
-								<label for="exampleInputItem" class="col-sm-1 control-label">Ver
-									mais</label>
+								<label for="exampleInputItem" class="col-sm-2 control-label">Visualizando 1-{{limite}} de {{total}} </label>
+								<label for="exampleInputItem" class="col-sm-1 control-label">Ver mais</label>
 
 								<div class="col-sm-1">
 									<select class="form-control" ng-selected="carregaMais();"
@@ -172,7 +172,7 @@
 							<div class="form-group espaco_entre_botoes has-success">
 								<label for="exampleInputAssunto" class="col-sm-1 control-label">Assunto</label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control"
+									<input type="text" class="form-control" ng-maxlength="100"
 										ng-model="ticket.assunto">
 								</div>
 							</div>
