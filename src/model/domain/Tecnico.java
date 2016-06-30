@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,9 +31,14 @@ public class Tecnico implements Serializable {
 	@Column(name="codTecnico")
 	private Integer codTecnico;
 	
+
+	@Size(min=10,message="Nome do tecnico precisa ter pelo menos 10 caracteres")
+	@NotNull(message="O campo nome é obrigatório")
 	@Column(name="nome")
 	private String nome;
 	
+	@Size(min=10,message="O email precisa ter pelo menos 10 caracteres")
+	@NotNull(message="O campo email é obrigatório")
 	@Column(name="email")
 	private String email;
 	

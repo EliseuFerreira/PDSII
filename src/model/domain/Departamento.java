@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -25,7 +27,9 @@ public class Departamento implements Serializable {
 	@Column(name = "codDepartamento")
 	private Integer codDepartamento;
 		
-	
+
+	@Size(min=6,message="Nome do departamento precisa ter pelo menos 6 caracteres")
+	@NotNull(message="O campo nome é obrigatório")
 	@Column(name="nome")
 	private String nome;
 	

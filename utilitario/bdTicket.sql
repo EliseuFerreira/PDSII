@@ -1,10 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `ticket` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `ticket`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
---
--- Host: 127.0.0.1    Database: ticket
--- ------------------------------------------------------
--- Server version	5.6.26
+use ticket;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +51,7 @@ CREATE TABLE `tb_tecnico` (
   PRIMARY KEY (`codTecnico`),
   KEY `FK_dt2hfexxfthpjs1tvuhl3i9xi` (`departamento`),
   CONSTRAINT `FK_dt2hfexxfthpjs1tvuhl3i9xi` FOREIGN KEY (`departamento`) REFERENCES `tb_departamento` (`codDepartamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +60,7 @@ CREATE TABLE `tb_tecnico` (
 
 LOCK TABLES `tb_tecnico` WRITE;
 /*!40000 ALTER TABLE `tb_tecnico` DISABLE KEYS */;
-INSERT INTO `tb_tecnico` VALUES (1,'eliseumcd@gmail.com','Eliseu Macedo','',1),(2,'marcoantonio@gmail.com','Marco Antonio','',1),(3,'isabelmacedo@gmsolucoes.com.br','Isabel Macedo','',2),(4,'dhenrique@hotmai.com','Diego Henrique','',8);
+INSERT INTO `tb_tecnico` VALUES (1,'eliseumcd@gmail.com','Eliseu Macedo','\0',1),(2,'marcoantonio@gmail.com','Marco Antonio','',1),(3,'isabelmacedo@gmsolucoes.com.br','Isabel Macedo','',2),(4,'dhenrique@hotmai.com','Diego Henrique','',8),(5,'dribeiro@gmsolucoes.com.br','Diego Modesto','',1);
 /*!40000 ALTER TABLE `tb_tecnico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +87,7 @@ CREATE TABLE `tb_ticket` (
   PRIMARY KEY (`codTicket`),
   KEY `FK_ta2tadppu1ru29r5af9tuyqfk` (`tecnico`),
   CONSTRAINT `FK_ta2tadppu1ru29r5af9tuyqfk` FOREIGN KEY (`tecnico`) REFERENCES `tb_tecnico` (`codTecnico`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,13 +96,9 @@ CREATE TABLE `tb_ticket` (
 
 LOCK TABLES `tb_ticket` WRITE;
 /*!40000 ALTER TABLE `tb_ticket` DISABLE KEYS */;
-INSERT INTO `tb_ticket` VALUES (1,'Problemas ao acessar o site de compras','2016-05-23 18:02:37','2016-05-23 21:23:07','Ao tentar realizar login no site ocorreu o erro OleDB','joquim@gmail.com','Joaquim Jose da Silva Xavier',1234,'1','0','\0',2),(2,'Erro na agecia de venda, no arquivo QTKPrinter','2016-05-23 01:17:16',NULL,'Ao tentar logar no sistema ocorre o erro no arquivo QKTPrinter informando que o número do arquivo de controle é diferente do da impressora.','mjuina@gmail.com.br','Viação Juina - Marlos',123456,'3','0','\0',1),(23,'Problemas ao realizar a impressão do bilhete de passagem.','2016-05-23 01:19:39','2016-05-23 19:39:59','Erro no arquivo de controle da impressora.','eliseumcd@gmail.com','Eliseu Ferreira Macedo',123456,'2','0','\0',2),(24,'finality','2016-05-23 18:11:31',NULL,'finality','jgomes@gmail.com','Jeziel Gomes',1000000,'3','0','\0',2);
+INSERT INTO `tb_ticket` VALUES (1,'Problemas ao acessar o site de compras','2016-05-23 18:02:37','2016-06-10 17:12:49','Ao tentar realizar login no site ocorreu o erro OleDB','joquim@gmail.com','Joaquim Jose da Silva Xavier',1234,'2','0','\0',5),(2,'Erro na agecia de venda, no arquivo QTKPrinter','2016-05-23 01:17:16',NULL,'Ao tentar logar no sistema ocorre o erro no arquivo QKTPrinter informando que o número do arquivo de controle é diferente do da impressora.','mjuina@gmail.com.br','Viação Juina - Marlos',123456,'3','0','\0',1),(3,'Problemas ao realizar a impressão do bilhete de passagem.','2016-05-23 01:19:39','2016-05-23 19:39:59','Erro no arquivo de controle da impressora.','eliseumcd@gmail.com','Eliseu Ferreira Macedo',123456,'2','0','\0',2),(4,'finality','2016-05-23 18:11:31',NULL,'finality','jgomes@gmail.com','Jeziel Gomes',1000000,'3','0','\0',2),(5,'Problemas ao realizar acesso a internet','2016-06-10 16:26:54',NULL,'tyestestestsetsaet','jalves@gmail.com','José Alvez',123456,'3','0','',3),(6,'Erro ao acessar o painel do netviagem','2016-06-10 16:32:25',NULL,'Tentei acessar o painel do netviagem para recarregar os trechos que foram criados no sistema de vendas, porém não foi possível por que não consigo lembrar minha senha, e o botão de enviar a senha por email não está liberado.','jsoliveira','José Silveira de oliveira',3216545,'3','0','',4),(35,'Problemas com a licença da agência','2016-06-10 16:39:12',NULL,'Boa tarde gostaria de solicitar se possível a troca da licença da agência de Sigla para a agência de sigla\nOu seja, a agencia JRA que encontra-se licenciada, ser removida a licença da mesma para utilizar na','agolveia@hotmail.com','Alex Golveia',321654987,'2','0','',1),(36,'Erro ao habilitar cadastro do Órgão','2016-06-10 16:40:30',NULL,'Fomos  habilitar o cadastro do órgão, para exigir o preenchimento da carteirinha no cadastro vip, porém o sistema não está salvando quando inserido.','suporte@viacaojuina.com.br','Viação Juina -Thiago',3167,'1','0','',NULL),(37,'Solicitação de licença','2016-06-10 16:45:10','2016-06-10 17:13:07','Olá, gostaria de solicitar novamente a licença abaixo o mais rápido possível.\nCOMA - COBRADORES E MOTORISTAS DA EMP\n\nFico no aguardo. Obrigado\nHailson Almeida\nSuporte CPD - Boa Esperança','cpd@boaesp.com.br','Boa Esperança - Hailson',3155,'0',NULL,'\0',1),(38,'Problema na licença boa esperança','2016-06-10 17:04:38',NULL,'Olá, gostaria de solicitar novamente a licença abaixo o mais rápido possível.\nCOMA - COBRADORES E MOTORISTAS DA EMP\n\nFico no aguardo. Obrigado\nHailson Almeida\nSuporte CPD - Boa Esperança','cpd@boaesp.com.br','Boa esperança - Lucas',3166,'2','0','',4),(39,'Problemas no estoque de passagens','2016-06-10 17:20:28',NULL,'Neste relatório de estoque as passagens da agência TR ICEM, da numeração 457690 à 457700, série UN8 constam como não utilizadas e elas estão vendidas no caixa 3160, conforme anexo.\nGostaria de saber o que aconteceu ?','ccelico@viacaosaoraphael.com.br','São Raphael - Christianne',3138,'3','0','',1);
 /*!40000 ALTER TABLE `tb_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'ticket'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -119,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-24 10:03:01
+-- Dump completed on 2016-06-10 18:05:35

@@ -1,0 +1,88 @@
+Digite o número da opção desejada
+
+//Cadastro
+1- Cadastrar Departamento (Administrador) ok
+2- Editar Departamento (Administrador) ok
+3- Cadastrar Tecnico (Administrador) ok
+4- Editar Técnico (Administrador) ok
+5- Cadastrar Empresa (Administrador) ok
+6- Editar Empresa (Administrador) ok
+7 - Cadastrar Produto (Administrador) ok
+8- Editar Produto (Administrador) ok
+9 - Cadastrar Perfil de Acesso (Administrador)ok
+10 - Editar Perfil de Acesso (Administrador)ok
+11 - Cadastrar Motivo de abertura OS (Administrador)ok
+12- Alterar Motivo de abertura OS (Administrador)ok
+13 - Editar Status Empresa (Administrador)ok
+
+//Manutençõesa
+14 - Alterar Perfil do tecnico (Administrdor)ok
+15 - Abrir Ticket (Tecnico)ok
+16 - Alterar Status Ticket (Tecnico)ok
+17 - Encaminhar Ticket para tecnico (Tecnico)ok
+18 - Encaminhar Ticket para Departamento (Tecnico)ok
+// Relatórios de tickets
+19 - Historico de acoes por Ticket(Tecnico)ok
+// Relatórios por período com consulta em data de abertura.
+20 - Relatorio de Ticket por tecnico no periodo(Administrador)ok
+21 - Relatorio de Ticket por departamento no periodo(Administrador)ok
+22 - Relatorio de Ticket por empresa no periodo(Tecnico)ok
+23 - Relatorio de Ticket por produto no periodo(Tecnico)ok
+24 - Relatorio de Ticket por motivo de abertura no periodo (Tecnico)ok
+25 - Sair:ok
+
+
+
+==============================================================
+
+===possibilidade de linkar be
+===Listar ticket e visualizar ações Log. Massa
+===Listar empresa e listar ticket das empresas
+===Listar Produto e visualizar Ticket do produto
+
+
+
+=============classe programa===================================
+
+	//variaveis e chamada da camada de serviço
+		
+	Departamento departamento=null;
+	DepartamentoServico departamentoServico = ServicoFactory.criarDepartamentoServico();
+	Empresa empresa = null;
+	EmpresaServico empresaServico = ServicoFactory.criarEmpresaServico();
+	LogAcao logAcao = null;
+	LogAcaoServico logAcaoServico = ServicoFactory.criarLogAcaoServico();
+	MotivoAbertura motivoAbertura = null;
+	MotivoAberturaServico motivoAberturaServico = ServicoFactory.criarMotivoAberturaServico();
+	PerfilAcesso perfilAcesso = null;
+	PerfilAcessoServico perfilAcessoServico = ServicoFactory.criarPerfilAcessoServico();
+	Produto produto = null;
+	ProdutoServico produtoServico = ServicoFactory.criarProdutoServico();
+	StatusTicket statusTicket = null;
+	StatusTicketServico statusTicketServico = ServicoFactory.criarStatusTicketServico();
+	Tecnico tecnico = null;
+	TecnicoServico tecnicoServico = ServicoFactory.criarTecnicoServico();
+	Ticket ticket = null;
+	TicketServico ticketServico = ServicoFactory.criarTicketServico();
+
+=====logs======
+1 - Ticket aberto
+2 - Ticket Fechado
+3 - Ticket encaminhado para o departamento 
+4 - Ticket encaminhado para o tecnico
+5 - Alteração de Status para 'Em processamento'
+6 - Nota adicionada
+
+===============
+
+Inserir email do departamento
+inserir descrição do departamento
+
+Inserir descrição do produto
+
+
+
+
+
+
+

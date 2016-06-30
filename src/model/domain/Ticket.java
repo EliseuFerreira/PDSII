@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import util.Prioridade;
@@ -29,6 +31,8 @@ public class Ticket implements Serializable {
 	@Column(name="codTicket")
 	private Integer codTicket;
 	
+	@Size(min=5,message="O assunto ter pelo menos 5 caracteres")
+	@NotNull(message="O campo assunto é obrigatório")
 	@Column(name = "assunto")
 	private String assunto;
 	
@@ -40,12 +44,18 @@ public class Ticket implements Serializable {
 	@Column(name="dataFechamento")
 	private Date dataFechamento;
 	
+	@Size(min=15,message="A descrição precisa ter pelo menos 15 caracteres")
+	@NotNull(message="O campo descrição é obrigatório")
 	@Column(name = "descricao")
 	private String descricao;
 	
+	@Size(min=10,message="O campo email precisa ter pelo menos 10 caracteres")
+	@NotNull(message="O campo email é obrigatório")
 	@Column(name = "email")
 	private String email;
 	
+	@Size(min=10,message="O nome precisa ter pelo menos 10 caracteres")
+	@NotNull(message="O campo nome é obrigatório")
 	@Column(name = "nomeResponsavel")
 	private String nomeResponsavel;
 	

@@ -30,7 +30,7 @@
 		<div class="panel-body">
 
 			<div>
-				<table class="table table-hover">
+				<table class="table table-condensed table-striped table-hover">
 					<th>OS Ticket</th>
 					<th>OS Externa</th>
 					<th>Data</th>
@@ -40,7 +40,7 @@
 					<th>Status</th>
 
 
-					<tr class="active"
+					<tr class="success"
 						ng-repeat="ticketTabela in tickets | limitTo:limite| filter:criterio"
 						ng-click="selecionaTicket(ticketTabela);">
 						<td>{{ticketTabela.codTicket}}</td>
@@ -59,7 +59,20 @@
 					<div class="tab-pane active espaco_entre_botoes">
 
 
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="ticketForm" class="css-form" ng-submit="departamentoForm.$valid && salvar()" novalidate>
+						
+							<span ng-repeat="mensagem in mensagens">{{mensagem}}<br></span>
+							
+							<div ng-show="ticketForm.$submitted">
+	 							<div ng-show="ticketForm.nome.$error.required">Preencha o nome</div>
+	 							<div ng-show="ticketForm.nome.$error.minlength">Nome precisa ter pelo menos 10 caracteres</div>
+	 							<div ng-show="ticketForm.email.$error.required">Preencha o email</div>
+	 							<div ng-show="ticketForm.email.$error.minlength">Email precisa ter pelo menos 10 caracteres</div>
+	 							<div ng-show="ticketForm.assunto.$error.required">Preencha o assunto</div>
+	 							<div ng-show="ticketForm.assunto.$error.minlength">Assunto precisa ter pelo menos 5 caracteres</div>
+	 							<div ng-show="ticketForm.descricao.$error.required">Preencha a descrição</div>
+	 							<div ng-show="ticketForm.descricao.$error.minlength">Descrição precisa ter pelo menos 15 caracteres</div>
+							</div>
 							<div class="form-group espaco_entre_botoes">
 								<div class="col-sm-8">
 									<button type="submit" ng-click="novo();"
@@ -96,8 +109,8 @@
 								</div>
 								<label for="exampleInputnome" class="col-sm-1 control-label">Cliente</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control"
-										ng-model="ticket.nomeResponsavel">
+								
+								<input type="text" class="form-control" name="nome" ng-model="ticket.nomeResponsavel" placeholder="Nome" required=""ng-minlength="10"/>
 								</div>
 
 								<label for="exampleInputDataAbertura"
@@ -120,7 +133,7 @@
 
 								<label for="exampleInputEmail" class="col-sm-1 control-label">Email</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" ng-model="ticket.email">
+								<input type="text" class="form-control" name="email" ng-model="ticket.email" placeholder="Nome" required=""ng-minlength="10"/>
 								</div>
 
 								<label for="exampleInputDataFechamento"
@@ -172,8 +185,7 @@
 							<div class="form-group espaco_entre_botoes has-success">
 								<label for="exampleInputAssunto" class="col-sm-1 control-label">Assunto</label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control" ng-maxlength="100"
-										ng-model="ticket.assunto">
+									<input type="text" class="form-control" name="assunto" ng-model="ticket.assunto" placeholder="assunto" required=""ng-minlength="5"/>
 								</div>
 							</div>
 							<div class="form-group espaco_entre_botoes has-success">
@@ -181,7 +193,7 @@
 									class="col-sm-1 control-label">Descrição</label>
 								<div class="col-sm-11">
 									<textarea class="form-control" rows="3"
-										ng-model="ticket.descricao"></textarea>
+										name="descricao" ng-model="ticket.descricao" placeholder="descricao" required=""ng-minlength="15"></textarea>
 								</div>
 							</div>
 						</form>

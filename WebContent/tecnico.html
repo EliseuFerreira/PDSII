@@ -42,7 +42,17 @@
 					<div role="tabpanel" class="tab-pane active espaco_entre_botoes"
 						id="home">
 
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="departamentoForm" class="css-form" ng-submit="departamentoForm.$valid && salvar()" novalidate>
+						
+							<span ng-repeat="mensagem in mensagens">{{mensagem}}<br></span>
+							
+							<div ng-show="departamentoForm.$submitted">
+	 							<div ng-show="departamentoForm.nome.$error.required">Preencha o nome</div>
+	 							<div ng-show="departamentoForm.nome.$error.minlength">Nome precisa ter pelo menos 10 caracteres</div>
+	 							<div ng-show="departamentoForm.email.$error.required">Preencha o email</div>
+	 							<div ng-show="departamentoForm.email.$error.minlength">O email precisa ter pelo menos 10 caracteres</div>
+							</div>
+							
 							<button type="submit" ng-click="novo();" class="btn btn-primary">Novo</button>
 							<button type="submit" ng-click="salvar();"
 								class="btn btn-success">Salvar</button>
@@ -63,15 +73,14 @@
 							<div class="form-group">
 								<label for="exampleInputnome" class="col-sm-1 control-label">Nome</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" ng-model="tecnico.nome">
+									<input type="text" class="form-control" name="nome" ng-model="tecnico.nome" placeholder="Nome" required=""ng-minlength="10"/>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="exampleInputEmail" class="col-sm-1 control-label">Email</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control"
-										ng-model="tecnico.email">
+									<input type="text" class="form-control" name="email" ng-model="tecnico.email" placeholder="Nome" required=""ng-minlength="10"/>
 								</div>
 							</div>
 
